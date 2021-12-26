@@ -5,6 +5,8 @@ import reactor.core.publisher.Mono;
 import reactor.util.retry.Retry;
 
 import java.time.Duration;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 public class Lec04RetryWhenAdvanced {
 
@@ -36,11 +38,9 @@ public class Lec04RetryWhenAdvanced {
         });
     }
 
-    private static  void processPayment(String ccNumber) {
+    private static void processPayment(String ccNumber) {
         int random = Util.faker().random().nextInt(1, 20);
-        if (random < 8)
-            throw new RuntimeException("500");
-        else if (random < 10)
-            throw new RuntimeException("404");
+        if (random < 8) throw new RuntimeException("500");
+        else if (random < 10) throw new RuntimeException("404");
     }
 }
